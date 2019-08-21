@@ -70,3 +70,20 @@ def position_taken?(board, index)
   board[index] == 'X' || board[index] == 'O'
 end
 
+def current_player(board)
+  turn_count(board).even? ? 'X' : 'O'
+end
+
+def turn_count(board)
+  board.count { |token| token == 'X' || token == 'O' }
+end
+
+def move(board, index, player)
+  board[index] = player
+end
+
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo.first]
+  end
+end
